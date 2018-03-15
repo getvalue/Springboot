@@ -46,6 +46,6 @@ public class UserController {
     @RequestMapping(value = "userone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String UserOne(@PathVariable String id) {
         return JSON.toJSONString(userService.findOne(id));
-    }
+    } 
 }
 
