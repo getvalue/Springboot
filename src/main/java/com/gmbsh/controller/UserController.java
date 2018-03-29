@@ -23,11 +23,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "user",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public String index() {
-        return "a1a1a";
-    }
-
+    /**
+     * 分页访问示例 设置分页请求
+     *访问地址：http://localhost:8081/userlist?pageNum=2&pageSize=10
+     * @param request
+     * @param pageNum 第几页
+     * @param pageSize 每页信息条数
+     * @return
+     */
     @RequestMapping(value = "userlist",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String  userList(HttpServletRequest request, Integer pageNum, Integer pageSize) {
         pageNum = pageNum == null ? 1 : pageNum;
@@ -43,9 +46,14 @@ public class UserController {
 //        + ", Page: " + JSON.toJSONString(page)
     }
 
+    /**
+     * 查询单个用户信息在后面追加信息为id
+     * @param id 用户ID
+     * @return
+     */
     @RequestMapping(value = "userone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String UserOne(@PathVariable String id) {
         return JSON.toJSONString(userService.findOne(id));
-    } 
+    }
 }
 

@@ -1,6 +1,7 @@
 package com.gmbsh.config;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,17 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
-/**
- * Created by gubaoer on 17/7/3.
+ * 访问日志记录
  */
-
-
 @Aspect
 @Order(5)
 @Component
 public class WebLogAspect {
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 

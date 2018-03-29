@@ -10,6 +10,10 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**
+ * mybatis逆向工程
+ * 暂未完善
+ */
 public class GeneratorSqlmap {
     public static void generator() throws Exception{
         List<String> warnings = new ArrayList<String>();

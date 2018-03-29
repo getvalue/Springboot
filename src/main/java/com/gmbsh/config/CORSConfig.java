@@ -14,6 +14,10 @@ import static org.springframework.web.cors.CorsConfiguration.ALL;
 @Configuration
 public class CORSConfig {
 
+    /**
+     *访问跨域权限设置
+     * @return
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
