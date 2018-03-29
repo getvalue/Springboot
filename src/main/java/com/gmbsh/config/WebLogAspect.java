@@ -25,7 +25,7 @@ public class WebLogAspect {
 
     private Logger logger = LogManager.getLogger();
 
-    ThreadLocal<Long> startTime = new ThreadLocal<>();
+    ThreadLocal<Long> startTime = new ThreadLocal<Long>();
 
     @Pointcut("execution(public * com.gmbsh.controller..*.*(..))")
     public void webLog(){}

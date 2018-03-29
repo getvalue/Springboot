@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.service.UserService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api(value = "API - UserController")
 @RestController
 public class UserController {
     //注入service服务对象
@@ -31,8 +33,12 @@ public class UserController {
      * @param pageSize 每页信息条数
      * @return
      */
+    @ApiOperation(value = "用户列表",notes ="用户分页列表",httpMethod = "GET",consumes = "application/json",response = String.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页",required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name = "pageSize",value = "每页信息条数", required = true, dataType = "Integer", paramType = "query")})
     @RequestMapping(value = "userlist",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public String  userList(HttpServletRequest request, Integer pageNum, Integer pageSize) {
+    public String  userList(HttpServletRequest request,Integer pageNum,Integer pageSize) {
         pageNum = pageNum == null ? 1 : pageNum;
         pageSize = pageSize == null ? 10 : pageSize;
         PageHelper.startPage(pageNum, pageSize);
@@ -43,7 +49,6 @@ public class UserController {
         data.put("oneuser", user);
         data.put("pageinfo",pageInfo);
         return "PageInfo: " + JSON.toJSONString(data) ;
-//        + ", Page: " + JSON.toJSONString(page)
     }
 
     /**
@@ -51,6 +56,8 @@ public class UserController {
      * @param id 用户ID
      * @return
      */
+    @ApiOperation(value = "根据id查找", notes = "查询单个用户信息",httpMethod = "GET",consumes = "application/json", response = String.class)
+    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "用户ID",required = true, dataType = "Integer", paramType = "path") })
     @RequestMapping(value = "userone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String UserOne(@PathVariable String id) {
         return JSON.toJSONString(userService.findOne(id));
