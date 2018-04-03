@@ -48,7 +48,7 @@ public class UserController {
         Map data = new HashMap();
         data.put("oneuser", user);
         data.put("pageinfo",pageInfo);
-        return "PageInfo: " + JSON.toJSONString(data) ;
+        return JSON.toJSONString(data) ;
     }
 
     /**
