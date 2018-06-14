@@ -4,6 +4,6 @@
 dMP.dMP dMP dMP dMP dMP.aMF dP .dMP dMP dMP
 VMMMP" dMP dMP dMP dMMMMP"  VMMMP" dMP dMP
 ===========================================
- BoSheng software
+ BoSheng Studio
  url:http://www.gmbsh.com
  :: Spring Boot ::        (v2.0.0.RELEASE)
