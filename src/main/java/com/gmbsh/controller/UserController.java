@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gmbsh.Entity.UserEntity;
+import com.gmbsh.controller.base.BaseController;
 import com.gmbsh.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.Map;
 
 @Api(value = "API - UserController")
 @RestController
-public class UserController {
+public class UserController extends BaseController {
     //注入service服务对象
     @Autowired
     private UserService userService;
