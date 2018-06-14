@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--通过这个配置文件，完成mybatis与数据库的连接  -->
 <configuration>
-
     <!--配置mybatis的log实现为LOG4J  -->
     <!-- 配置后，后台就会有sql语句的输出 -->
     <settings>
@@ -21,7 +20,6 @@
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
         <typeAlias alias="User" type="com.gmbsh.Entity.UserEntity" />
-
+        <typeAlias alias="Permission" type="com.gmbsh.Entity.PermissionEntity" />
     </typeAliases>
-
 </configuration>
