@@ -1,19 +1,27 @@
 package com.gmbsh.Entity;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+
+
 public class UserEntity {
-    private int id;
+    private int user_id;
     private String username;
     private String password;
     private String user_sex;
     private String address;
     private String nick_name;
+    private String role_id;
+    private String create_time;
+    private String update_time;
 
-    public int getId() {
-        return id;
+
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -56,15 +64,43 @@ public class UserEntity {
         this.nick_name = nick_name;
     }
 
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(String role_id) {
+        this.role_id = role_id;
+    }
+
+    public String getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
+    }
+
+    public String getUpdate_time() {
+        return update_time;
+    }
+
+    public void setUpdate_time(String update_time) {
+        this.update_time = update_time;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id=" + id +
+                "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", user_sex='" + user_sex + '\'' +
                 ", address='" + address + '\'' +
                 ", nick_name='" + nick_name + '\'' +
+                ", role_id='" + role_id + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", update_time='" + update_time + '\'' +
                 '}';
     }
 }
+
