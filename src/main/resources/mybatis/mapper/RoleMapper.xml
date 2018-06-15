@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmbsh.Mapper.RoleMapper" >
+
+    <select id="findPermissionByRoleID" parameterType="String" resultType="Permission">
+       SELECT
+            a.ROLE_ID,
+            b.PERMISSION_NAME,
+            a.PERMISSION_ID,
+            b.MENU_CODE,
+            b.MENU_NAME,
+            b.REQUIRED_PERMISSION
+        FROM
+            SYS_ROLE_PERMISSION a
+        LEFT JOIN SYS_PERMISSION b ON a.PERMISSION_ID = b.PERMISSION_ID
+        WHERE
+            a.ROLE_ID = #{roleid}
+        ORDER BY
+            b.MENU_CODE
+    </select>
+    <insert id="save" parameterType="pd" >
+        insert into sys_role (
+            role_id,
+            role_name,
+            create_time,
+            update_time,
+            delete_status
+        ) values (
+            #{role_id},
+            #{role_name},
+            #{create_time},
+            #{update_time},
+            #{delete_status})
+    </insert>
+
+</mapper>

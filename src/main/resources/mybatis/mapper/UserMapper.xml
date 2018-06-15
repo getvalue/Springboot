@@ -10,4 +10,26 @@
         SELECT user_id,username,password,role_id  FROM SYS_USER where user_id=#{id}
     </select>
 
+    <insert id="save" parameterType="pd" >
+        insert into sys_user (
+            user_id,
+            username,
+            password,
+            role_id,
+            nick_name,
+            create_time,
+            update_time,
+            delete_status,
+            user_sex
+        ) values (
+            #{user_id},
+            #{username},
+            #{password},
+            #{role_id},
+            #{nick_name},
+            #{create_time},
+            #{update_time},
+            #{delete_status},
+            #{user_sex})
+    </insert>
 </mapper>
