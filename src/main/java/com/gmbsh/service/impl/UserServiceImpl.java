@@ -3,6 +3,7 @@ package com.gmbsh.service.impl;
 import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.Mapper.UserMapper;
 import com.gmbsh.service.UserService;
+import com.gmbsh.util.PageData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,10 @@ public class UserServiceImpl implements UserService{
     public UserEntity findOne(String id) {
         UserEntity user = userMapper.findOne(id);
         return user;
+    }
+
+    @Override
+    public void save(PageData pd) {
+        userMapper.save(pd);
     }
 }

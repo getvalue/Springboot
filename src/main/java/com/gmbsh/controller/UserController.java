@@ -19,10 +19,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 用户类
+ * @author shil
+ * @date 2018/6/14 17:39
+ */
 @Api(value = "API - UserController")
 @RestController
 public class UserController extends BaseController {
-    //注入service服务对象
+    /**注入service服务对象*/
     @Autowired
     private UserService userService;
 

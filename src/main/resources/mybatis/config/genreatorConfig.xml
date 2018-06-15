@@ -6,7 +6,6 @@
     <!--数据库驱动,最好不要有中文字符,不然会找不到-->
     <classPathEntry location="F:/cache/mysql-connector-java-5.1.28-bin.jar" />
 
-
     <context id="DB2Tables"    targetRuntime="MyBatis3">
 
         <commentGenerator>
@@ -14,7 +13,8 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/test1" userId="root" password="123456">
+        <jdbcConnection driverClass="${spring.datasource.driverClassName}" connectionURL="${spring.datasource.url}" userId="${spring.datasource.username}" password="${spring.datasource.password}">
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/test1" userId="root" password="123456">-->
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -33,11 +33,11 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名,需要记住的一点是逆向工程无法生成关联关系,只能生成单表操作-->
-        <table tableName="student"
-               domainObjectName="Student"
+        <table tableName="sys_user"
+               domainObjectName="User"
         ></table>
-        <table tableName="teacher"
-               domainObjectName="Teacher"
+        <table tableName="sys_user_info"
+               domainObjectName="UserInfo"
         ></table>
     </context>
 </generatorConfiguration>

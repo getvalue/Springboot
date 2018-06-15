@@ -3,6 +3,7 @@ package com.gmbsh.config;
 
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    @Value("${SYSTEMNAME}")
+    private String SYSTEMNAME;
+
+    @Value("${SYSTEM.DESCRIPTION}")
+    private String DESCRIPTION;
+
+    @Value("${SYSTEM.VERSION}")
+    private String VERSION;
+
+    @Value("${SYSTEM.TERMSOFSERVICEURL}")
+    private String TERMSOFSERVICEURL;
+
+    @Value("${SYSTEM.CONTACTNAME}")
+    private String CONTACTNAME;
+
+    @Value("${SYSTEM.LICENSE}")
+    private String LICENSE;
+
+    @Value("${SYSTEM.LICENSEURL}")
+    private String LICENSEURL;
+
     @Bean
     public Docket ProductApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -32,13 +54,13 @@ public class SwaggerConfig {
     }
 
     private ApiInfo productApiInfo() {
-        ApiInfo apiInfo = new ApiInfo("XXX系统数据接口文档",
-                "文档描述。。。",
-                "1.0.0",
-                "API TERMS URL",
-                "联系人邮箱",
-                "BoSheng Software",
-                "HTTP://www.gmbsh.com");
+        ApiInfo apiInfo = new ApiInfo(SYSTEMNAME+"数据接口文档",
+                DESCRIPTION,
+                VERSION,
+                TERMSOFSERVICEURL,
+                CONTACTNAME,
+                LICENSE,
+                LICENSEURL);
         return apiInfo;
     }
 }
