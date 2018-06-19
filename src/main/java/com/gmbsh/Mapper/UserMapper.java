@@ -20,4 +20,6 @@ public interface UserMapper {
     public UserEntity findOne(String id);
 
     public void save(PageData pd);
+
+    public PageData loginOne(PageData pd);
 }

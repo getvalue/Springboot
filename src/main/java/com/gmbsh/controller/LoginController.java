@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.controller.base.BaseController;
+import com.gmbsh.service.LoginService;
 import com.gmbsh.service.RoleService;
 import com.gmbsh.util.PageData;
 import com.gmbsh.util.UuidUtil;
@@ -16,6 +17,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +35,9 @@ public class LoginController extends BaseController {
 
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private LoginService loginService;
+
     @Value(value = "${server.port}")
     String port;
     /**
@@ -75,10 +80,9 @@ public class LoginController extends BaseController {
     @ApiImplicitParams({@ApiImplicitParam(name = "roleid", value = "角色ID",required = true, dataType = "String", paramType = "query")})
     @RequestMapping(value = "/ajaxRole", method = RequestMethod.POST)
     public String ajaxRole(String roleid) {
+        roleid = roleid != null && !roleid.isEmpty() ? roleid : "2";
         JSONArray js = new JSONArray();
-        js.addAll(roleService.findPermissionListByRoleID("2"));
-
-
+        js.addAll(roleService.findPermissionListByRoleID(roleid));
         return js.toString();
     }
 

@@ -9,7 +9,9 @@
     <select id="findOne" parameterType="String" resultType="User">
         SELECT user_id,username,password,role_id  FROM SYS_USER where user_id=#{id}
     </select>
-
+    <select id="loginOne" parameterType="pd" resultType="pd">
+        SELECT user_id,username,password,role_id  FROM SYS_USER where username=#{username} and password=#{password}
+    </select>
     <insert id="save" parameterType="pd" >
         insert into sys_user (
             user_id,

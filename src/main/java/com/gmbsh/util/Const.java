@@ -36,7 +36,16 @@ public class Const {
 	public static final String UPLOAD_PATH = "http://upload.sdny.gov.cn/NJ_Upload/";
 	
 	public static ApplicationContext WEB_APP_CONTEXT = null; //该值会在web容器启动时由WebAppContextListener初始化
-	
+
+	public static final String SUCCESS_CODE = "100";
+	public static final String SUCCESS_MSG = "请求成功";
+
+	/**
+	 * session中存放用户信息的key值
+	 */
+	public static final String SESSION_USER_INFO = "userInfo";
+	public static final String SESSION_USER_PERMISSION = "userPermission";
+
 	/**
 	 * APP Constants
 	 */

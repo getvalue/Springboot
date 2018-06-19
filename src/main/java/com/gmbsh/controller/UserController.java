@@ -7,6 +7,7 @@ import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.controller.base.BaseController;
 import com.gmbsh.service.UserService;
 import io.swagger.annotations.*;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,6 +63,7 @@ public class UserController extends BaseController {
      * @param id 用户ID
      * @return
      */
+    @RequiresPermissions("article:select")
     @ApiOperation(value = "根据id查找", notes = "查询单个用户信息",httpMethod = "GET",consumes = "application/json", response = String.class)
     @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "用户ID",required = true, dataType = "Integer", paramType = "path") })
     @RequestMapping(value = "userone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
