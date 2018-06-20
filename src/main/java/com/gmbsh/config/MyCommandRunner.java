@@ -14,12 +14,13 @@ import java.net.URI;
 @Component
 public class MyCommandRunner implements CommandLineRunner {
     private static Logger logger = LoggerFactory.getLogger(MyCommandRunner.class);
+    /**启动浏览器默认打开地址*/
     @Value("${spring.web.loginurl}")
     private String loginUrl;
-
+    /**谷歌浏览器在电脑中的地址*/
     @Value("${spring.web.googleexcute}")
     private String googleExcutePath;
-
+    /**默认是否启动*/
     @Value("${spring.auto.openurl}")
     private boolean isOpen;
 

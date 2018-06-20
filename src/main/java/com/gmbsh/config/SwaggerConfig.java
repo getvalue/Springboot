@@ -14,6 +14,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ * 接口文档生成器
  * 访问接口地址：http://${host}:${port}/docs.html
  */
 @Configuration

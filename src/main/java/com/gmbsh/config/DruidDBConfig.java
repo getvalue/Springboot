@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import com.alibaba.druid.pool.DruidDataSource;
 
+/**
+ * 数据连接池
+ */
 @Configuration
 public class DruidDBConfig {
     private Logger logger = Logger.getLogger(DruidDBConfig.class);

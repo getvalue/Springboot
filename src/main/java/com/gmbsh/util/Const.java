@@ -46,22 +46,8 @@ public class Const {
 	public static final String SESSION_USER_INFO = "userInfo";
 	public static final String SESSION_USER_PERMISSION = "userPermission";
 
-	/**
-	 * APP Constants
-	 */
-	//app注册接口_请求协议参数)
-	public static final String[] APP_REGISTERED_PARAM_ARRAY = new String[]{"countries","uname","passwd","title","full_name","company_name","countries_code","area_code","telephone","mobile"};
-	public static final String[] APP_REGISTERED_VALUE_ARRAY = new String[]{"国籍","邮箱帐号","密码","称谓","名称","公司名称","国家编号","区号","电话","手机号"};
-	
-	//app根据用户名获取会员信息接口_请求协议中的参数
-	public static final String[] APP_GETAPPUSER_PARAM_ARRAY = new String[]{"USERNAME"};
-	public static final String[] APP_GETAPPUSER_VALUE_ARRAY = new String[]{"用户名"};
-	
-	//注册用户角色id
-	public static final String PROFESSOR = "12";		//专家role——id
-	public static final String TECHNICIST = "11";		//技术员role——id
-	public static final String PEASANT = "10";		//农民role——id
-	public static final String InnovationTeam = "13";		//创新专家role——id
-	public static final int PROBLEMCOUNT = 30;		//创新团队每日处理问题上限
+
+
+
 	
 }

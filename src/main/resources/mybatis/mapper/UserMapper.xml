@@ -3,14 +3,14 @@
 <mapper namespace="com.gmbsh.Mapper.UserMapper" >
 
     <select id="findAll" resultType="User">
-        SELECT user_id,username,password,role_id  FROM SYS_USER
+        SELECT user_id,username,password,role_id  FROM SYS_USER where delete_status = '0'
     </select>
 
     <select id="findOne" parameterType="String" resultType="User">
-        SELECT user_id,username,password,role_id  FROM SYS_USER where user_id=#{id}
+        SELECT user_id,username,password,role_id  FROM SYS_USER where user_id=#{id} and delete_status = '0'
     </select>
     <select id="loginOne" parameterType="pd" resultType="pd">
-        SELECT user_id,username,password,role_id  FROM SYS_USER where username=#{username} and password=#{password}
+        SELECT user_id,username,password,role_id  FROM SYS_USER where username=#{username} and password=#{password} and delete_status = '0'
     </select>
     <insert id="save" parameterType="pd" >
         insert into sys_user (

@@ -6,6 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.controller.base.BaseController;
 import com.gmbsh.service.UserService;
+import com.gmbsh.util.CommonUtil;
+import com.gmbsh.util.PageData;
 import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ public class UserController extends BaseController {
      * @param pageSize 每页信息条数
      * @return
      */
+    @RequiresPermissions("user:list")
     @ApiOperation(value = "用户列表",notes ="用户分页列表",httpMethod = "GET",consumes = "application/json",response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "第几页",required = true, dataType = "Integer", paramType = "query"),
@@ -63,12 +66,27 @@ public class UserController extends BaseController {
      * @param id 用户ID
      * @return
      */
-    @RequiresPermissions("article:select")
+    @RequiresPermissions("user:select")
     @ApiOperation(value = "根据id查找", notes = "查询单个用户信息",httpMethod = "GET",consumes = "application/json", response = String.class)
     @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "用户ID",required = true, dataType = "Integer", paramType = "path") })
     @RequestMapping(value = "userone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String UserOne(@PathVariable String id) {
         return JSON.toJSONString(userService.findOne(id));
+    }
+
+    /**
+     * 添加用户
+     * @return
+     */
+    @RequiresPermissions("user:add")
+    @ApiOperation(value = "添加用户", notes = "添加用户",httpMethod = "POST",consumes = "application/json", response = String.class)
+    @ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "用户信息",required = true, dataType = "UserEntity", paramType = "path") })
+    @RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String save(){
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        userService.save(pd);
+        return "11";
     }
 }
 

@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.gmbsh.Entity.UserEntity;
 import com.gmbsh.controller.base.BaseController;
 import com.gmbsh.service.LoginService;
+import com.gmbsh.service.PermissionService;
 import com.gmbsh.service.RoleService;
+import com.gmbsh.util.CommonUtil;
+import com.gmbsh.util.Const;
 import com.gmbsh.util.PageData;
 import com.gmbsh.util.UuidUtil;
 import io.swagger.annotations.Api;
@@ -18,10 +21,13 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -38,8 +44,7 @@ public class LoginController extends BaseController {
     @Autowired
     private LoginService loginService;
 
-    @Value(value = "${server.port}")
-    String port;
+
     /**
      * 登录方法
      * @param userInfo
@@ -50,8 +55,8 @@ public class LoginController extends BaseController {
             @ApiImplicitParam(name = "userInfo", value = "用户信息",required = true, dataType = "UserEntity", paramType = "query")
     })
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
-    public String ajaxLogin(UserEntity userInfo) {
-        JSONObject jsonObject = new JSONObject();
+    public PageData ajaxLogin(UserEntity userInfo) {
+        PageData jsonObject = new PageData();
         Subject subject = SecurityUtils.getSubject();
         subject.getSession();
         UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
@@ -68,11 +73,11 @@ public class LoginController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return jsonObject.toString();
+        return CommonUtil.successpd(jsonObject);
     }
 
     /**
-     * 登录方法
+     * 查询权限
      * @param roleid
      * @return
      */
@@ -86,5 +91,26 @@ public class LoginController extends BaseController {
         return js.toString();
     }
 
+    /**
+     * 获取用户信息
+     * @return
+     */
+    @ApiOperation(value = "获取用户信息",notes ="获取用户信息接口",httpMethod = "POST",consumes = "application/json",response = String.class)
+    @RequestMapping(value = "/getInfo", method = RequestMethod.POST)
+    public PageData getInfo() {
+        PageData userinfo = loginService.getInfo();
+        return userinfo;
+    }
+
+    /**
+     *用户退出
+     * @return
+     */
+    @ApiOperation(value = "用户退出",notes ="用户退出接口",httpMethod = "POST",consumes = "application/json",response = String.class)
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public PageData logout() {
+        PageData pd = loginService.logout();
+        return pd;
+    }
 }
 

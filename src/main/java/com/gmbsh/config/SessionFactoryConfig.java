@@ -18,8 +18,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
-import java.util.Properties;
 
+/**
+ * 事物处理
+ */
 @Configuration
 @EnableTransactionManagement
 @MapperScan("com.gmbsh.Mapper")
